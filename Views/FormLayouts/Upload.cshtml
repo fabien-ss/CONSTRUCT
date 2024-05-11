@@ -1,0 +1,16 @@
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @using (Html.BeginForm("UploadFile", "FormLayouts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" multiple/>
+        <input type="submit" value="Upload"/>
+    }
+
+    <h1>Multiple Files</h1>
+    @using (Html.BeginForm("UploadFiles", "FormLayouts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="files" multiple/>
+        <input type="submit" value="Upload"/>
+    }
+</div>
