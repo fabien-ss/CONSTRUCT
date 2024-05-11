@@ -9,7 +9,7 @@ public class TablesController : Controller, MethodController
   public IActionResult Basic() => View();
   public IActionResult TableDark() => View();
   public IActionResult TableBasic() => View();
-  public IActionResult Form()
+  public IActionResult Form(object o)
   {
     throw new NotImplementedException();
   }

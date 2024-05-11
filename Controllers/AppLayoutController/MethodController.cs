@@ -4,5 +4,5 @@ namespace AspnetCoreMvcFull.Controllers;
 
 public interface MethodController
 {
-  public IActionResult Form();
+  public IActionResult Form(object o);
 }

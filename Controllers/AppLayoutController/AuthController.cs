@@ -47,7 +47,7 @@ public class AuthController : Controller, MethodController
     return View(registerModel);
   }
 
-  public IActionResult Form()
+  public IActionResult Form(object o)
   {
     throw new NotImplementedException();
   }

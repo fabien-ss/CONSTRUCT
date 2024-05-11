@@ -15,7 +15,7 @@ public class FormLayoutsController : Controller, MethodController
 
   public IActionResult Horizontal() => View();
   public IActionResult Vertical() => View();
-  public IActionResult Form() => View();
+  public IActionResult Form(object o) => View();
   public IActionResult Upload() => View();
 
   public IActionResult UploadFile(IFormFile file)
