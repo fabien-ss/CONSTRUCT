@@ -70,7 +70,8 @@
   --bs-font-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-root-font-size: 16px;
-  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-font-courrier-new: 'Courier New', Courier, monospace;
+  --bs-body-font-family: var(--bs-font-courrier-new);
   --bs-body-font-size: 0.9375rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.53;
@@ -97,7 +98,7 @@
   --bs-code-color: #e83e8c;
   --bs-highlight-color: #697a8d;
   --bs-highlight-bg: #ffeecc;
-  --bs-border-width: 1px;
+  --bs-border-width: 0px;
   --bs-border-style: solid;
   --bs-border-color: #d9dee3;
   --bs-border-color-translucent: rgba(67, 89, 113, 0.175);
@@ -119,12 +120,58 @@
   --bs-form-valid-border-color: #71dd37;
   --bs-form-invalid-color: #ff3e1d;
   --bs-form-invalid-border-color: #ff3e1d;
+  --bs-body-background-image: url("/img/background-image/14904187_gradient_1.jpeg");
+  --bs-body-background: #151d26;
+  --bs-form-controller-bg: transparent;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.shine{
+  box-shadow: 0 0 0px #ffff, 0 0 0px #ffff, 0 0 0px #ffff, 0 0 10px #ffff;
+}
+
+.leftToRight{
+  animation: leftToRight 0.5s;
+}
+
+.rightToLeft{
+  animation: rightToLeft 0.5s;
+}
+
+.outIn{
+    animation: outIn 0.5s;
+}
+
+@keyframes outIn {
+  0%{
+    transform: scale(2);
+  }
+  100%{
+    transform:  scale(1);
+  }
+}
+
+@keyframes leftToRight {
+  0%{
+    transform: translate(-100%, 0%) scale(1.1);
+  }
+  100%{
+    transform: translate(0%, 0%) scale(1.1);
+  }
+}
+
+@keyframes rightToLeft {
+  0%{
+    transform: translate(100%, 0%) scale(1.1);
+  }
+  100%{
+    transform: translate(0%, 0%) scale(1.1);
+  }
 }
 
 :root {
@@ -144,7 +191,11 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  /*background-color: var(--bs-body-background);
+  */
+  background-image: var(--bs-body-background-image);
+  background-size: cover;
+  background-repeat:no-repeat;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(67, 89, 113, 0);
 }
@@ -2063,7 +2114,7 @@ progress {
   line-height: 1.53;
   color: #697a8d;
   appearance: none;
-  background-color: #fff;
+  background-color: var(--bs-form-controller-bg);;
   background-clip: padding-box;
   border: var(--bs-border-width) solid #d9dee3;
   border-radius: var(--bs-border-radius);
@@ -2082,7 +2133,7 @@ progress {
 }
 .form-control:focus {
   color: #697a8d;
-  background-color: #fff;
+  background-color: transparent;
   border-color: rgba(249, 249, 255, 0.54);
   outline: 0;
   box-shadow: 0 0 0.25rem 0.05rem rgba(105, 108, 255, 0.1);
@@ -2213,7 +2264,7 @@ textarea.form-control-lg {
   line-height: 1.53;
   color: #697a8d;
   appearance: none;
-  background-color: #fff;
+  background-color: transparent;
   background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   background-repeat: no-repeat;
   background-position: right 0.875rem center;
@@ -2600,7 +2651,7 @@ textarea.form-control-lg {
   color: #697a8d;
   text-align: center;
   white-space: nowrap;
-  background-color: #fff;
+  background-color: transparent;
   border: var(--bs-border-width) solid #d9dee3;
   border-radius: var(--bs-border-radius);
 }
@@ -3797,6 +3848,7 @@ textarea.form-control-lg {
   --bs-card-height: ;
   --bs-card-color: ;
   --bs-card-bg: #fff;
+  --bs-card-bg-seconde: #111b26;
   --bs-card-img-overlay-padding: 1.5rem;
   --bs-card-group-margin: 0.8125rem;
   position: relative;
@@ -3806,7 +3858,7 @@ textarea.form-control-lg {
   height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
-  background-color: var(--bs-card-bg);
+  background-color: var(--bs-card-bg-seconde);
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
@@ -3887,8 +3939,8 @@ textarea.form-control-lg {
   border-bottom: 0;
 }
 .card-header-tabs .nav-link.active {
-  background-color: var(--bs-card-bg);
-  border-bottom-color: var(--bs-card-bg);
+  background-color: var(--bs-card-bg-seconde);
+  border-bottom-color: var(--bs-card-bg-seconde);
 }
 
 .card-header-pills {

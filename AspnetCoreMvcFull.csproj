@@ -14,19 +14,35 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     <PackageReference Include="Xunit.Microsoft.VisualStudio.TestTools.UnitTesting" Version="1.0.0-beta-1011" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="Controllers\ModalController\" />
+    <Folder Include="Pages\" />
+    <Folder Include="wwwroot\uploads\documents\csv\" />
+    <Folder Include="wwwroot\uploads\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Chauffeur\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Chauffeur\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Chauffeur\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Chauffeur\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Chauffeur\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Csv\Form.cshtml" />
+    <AdditionalFiles Include="Views\Csv\Formulaire.cshtml" />
   </ItemGroup>
 
 </Project>

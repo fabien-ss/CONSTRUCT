@@ -10,17 +10,31 @@ public class DashboardsController : Controller
 {
   public DashboardsController()
   {
+    try
+    {
+      HttpContext.Session.GetString("user");
+    }
+    catch (Exception e)
+    {
+      ModelState.AddModelError("Login", "Log to see more");
+      RedirectToAction("LoginBasic", "Auth");
+
+    }
   }
 
   public IActionResult Index()
   {
     string user = HttpContext.Session.GetString("user");
-
-    Chauffeur chauffeur = JsonSerializer.Deserialize<Chauffeur>(user);
+      Utilisateur chauffeur = JsonSerializer.Deserialize<Utilisateur>(user);
     Console.WriteLine("user "+ user);
     Console.WriteLine("ALORS");
     /*
    */
+    return View();
+  }
+
+  public IActionResult BigNotification()
+  {
     return View();
   }
 }

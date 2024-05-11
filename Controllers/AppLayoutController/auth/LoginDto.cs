@@ -3,7 +3,7 @@ using AspnetCoreMvcFull.Entities;
 
 namespace AspnetCoreMvcFull.Models.DTO;
 
-public class LoginModel : Dto
+public class LoginDto : Dto
 {
 
   private string _email;
@@ -29,7 +29,7 @@ public class LoginModel : Dto
 
   public object mapDtoToEntity()
   {
-    Chauffeur chauffeur = new Chauffeur
+    Utilisateur chauffeur = new Utilisateur
     {
         Email = this.Email,
         MotDePasse = this.Password

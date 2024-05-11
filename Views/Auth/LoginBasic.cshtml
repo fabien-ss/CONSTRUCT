@@ -3,7 +3,7 @@
   ViewData["Title"] = "Login Basic - Pages";
 }
 
-@model AspnetCoreMvcFull.Models.DTO.LoginModel
+@model AspnetCoreMvcFull.Models.DTO.LoginDto
 
 @section PageStyles {
 <link rel="stylesheet" href="~/vendor/css/pages/page-auth.css">
@@ -11,9 +11,9 @@
 
 @* ************** Content ************** *@
 
-<div class="container-xxl">
+<div class="container-xxl rightToLeft">
   <div class="authentication-wrapper authentication-basic container-p-y">
-    <div class="authentication-inner">
+    <div class="authentication-inner shine">
       <!-- Register -->
       <div class="card">
         <div class="card-body">
@@ -32,7 +32,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3">
               <label for="email" asp-for="Email" class="form-label">Email or Username</label>
-              <input type="text" asp-for="Email" asp-items="ViewBag.Email" class="form-control" id="email" name="Email" autofocus>
+              <input type="text" value="rakoto0987@gmail.com" asp-for="Email" asp-items="ViewBag.Email" class="form-control" id="email" name="Email" >
               <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="mb-3 form-password-toggle">
@@ -43,10 +43,10 @@
                 </a>
               </div>
               <div class="input-group input-group-merge">
-                <input asp-for="Password" asp-items="ViewBag.Password" type="password" id="password" class="form-control" name="Password" aria-describedby="password"/>
+                <input asp-for="Password" value="rakoto" asp-items="ViewBag.Password" type="password" id="password" class="form-control" name="Password" aria-describedby="password"/>
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
-                <span asp-validation-for="Password" class="text-danger"></span>
+              <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="mb-3">
               <div class="form-check">
@@ -61,7 +61,11 @@
             </div>
 
           </form>
-@Html.ValidationSummary()
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              @Html.ValidationSummary()
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                </button>
+              </div>
           <p class="text-center">
             <span>New on our platform?</span>
             <a href="/Auth/RegisterBasic">

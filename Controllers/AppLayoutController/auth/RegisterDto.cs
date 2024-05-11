@@ -3,7 +3,7 @@ using System.Runtime.InteropServices.JavaScript;
 
 namespace AspnetCoreMvcFull.Models.DTO;
 
-public class RegisterModel: Dto
+public class RegisterDto: Dto
 {
 
   [Required(ErrorMessage = "Le nom est obligatoire.")]

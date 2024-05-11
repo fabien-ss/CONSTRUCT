@@ -7,8 +7,8 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<Prom13>(options =>
-  options.UseNpgsql(builder.Configuration.GetConnectionString("prom13")));
+builder.Services.AddDbContext<Tsakitsaky>(options =>
+  options.UseNpgsql(builder.Configuration.GetConnectionString("Sujet1")));
 
 builder.Services.AddSession(options =>
 {
