@@ -17,6 +17,13 @@ public class CsvDto
     set => targetTable = value ?? throw new ArgumentNullException(nameof(value));
   }
 
+  public CsvDto(IFormFile csv, string targetTable)
+  {
+    this.csv = csv;
+    this.targetTable = targetTable;
+  }
+
+
   public void saveFile(string filePath)
   {
     if (this.Csv != null && this.Csv.Length > 0 && this.Csv.FileName.Contains(".csv"))

@@ -1,12 +1,12 @@
-
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspnetCoreMvcFull.Controllers;
 
-public class CsvController: Controller, MethodController
+public class CsvController : Controller, MethodController
 {
   private readonly IWebHostEnvironment _hostEnvironment;
+
   public CsvController(IWebHostEnvironment hostingEnvironment)
   {
     this._hostEnvironment = hostingEnvironment;
@@ -15,17 +15,17 @@ public class CsvController: Controller, MethodController
   [HttpGet]
   public IActionResult Index()
   {
-    Console.WriteLine("ETP  ");
     return View();
   }
-[HttpPost
-]
+
+  [HttpPost]
   public IActionResult Index(CsvDto csvDto)
   {
     if (ModelState.IsValid)
     {
       csvDto.saveFile(_hostEnvironment.WebRootPath);
     }
+
     ViewBag.title = "Formulaire csv";
     return View(csvDto);
   }
@@ -37,7 +37,6 @@ public class CsvController: Controller, MethodController
 
   public IActionResult UploadFiles(List<IFormFile> files)
   {
-
     return null;
   }
 }

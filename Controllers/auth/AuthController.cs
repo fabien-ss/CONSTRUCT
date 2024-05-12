@@ -30,6 +30,7 @@ public class AuthController : Controller, MethodController
   {
     return View();
   }
+  [HttpPost]
   public IActionResult LoginBasic(LoginDto loginDto)
   {
     if (ModelState.IsValid)
@@ -49,6 +50,7 @@ public class AuthController : Controller, MethodController
     return View(loginDto);
   }
 
+  [HttpPost]
   public IActionResult RegisterBasic(RegisterDto registerDto)
   {
     if (ModelState.IsValid)

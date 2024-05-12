@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices.JavaScript;
+using AspnetCoreMvcFull.Entities;
 
 namespace AspnetCoreMvcFull.Models.DTO;
 
@@ -40,7 +41,14 @@ public class RegisterDto: Dto
   [DataType(DataType.Upload)] public IFormFile Image { get; set; }
   public object mapDtoToEntity()
   {
-    return new string("Hello");
-    throw new NotImplementedException();
+    return new Utilisateur
+    {
+      Nom = this.Name,
+      Prenom = this.FirstName,
+      Email = this.Email,
+      MotDePasse = this.Password,
+      DateNaissance = this.Birth.ToDateTime(TimeOnly.MinValue),
+      DateInscription = DateTime.Now
+    };
   }
 }
