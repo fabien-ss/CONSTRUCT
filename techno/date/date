@@ -1,0 +1,9 @@
+  string dateString = "22/12/2023";
+
+        // Parse the string into a DateTime object using a custom date format
+        DateTime dateTime = DateTime.ParseExact(dateString, "dd/MM/yyyy", null);
+
+        // Convert the DateTime object to a DateOnly object
+        DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
+
+        Console.WriteLine(dateOnly); // Output: 2023-12-22

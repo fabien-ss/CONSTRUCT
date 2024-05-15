@@ -1,0 +1,23 @@
+@model AspnetCoreMvcFull.Controllers.CsvDto
+
+<div class="row">
+  <div class="card mb-3">
+    <h5 class="card-header">Maison travaux</h5>
+    @using (Html.BeginForm("MaisonTravaux", "Csv", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="card-body demo-vertical-spacing demo-only-element">
+        <div class="input-group">
+          <span asp-for="TargetTable" class="input-group-text" id="basic-addon11">MaisonTravaux</span>
+        </div>
+        <div class="input-group">
+          <input asp-for="Csv" type="file" name="Csv" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+          <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+      </div>
+      <span class="error">
+        @Html.ValidationSummary()
+      </span>
+    }
+  </div>
+</div>

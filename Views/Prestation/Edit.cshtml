@@ -1,0 +1,62 @@
+@model AspnetCoreMvcFull.Models.Entities.Prestation
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Prestation</h4>
+<hr />
+<div class="row card">
+    <div class="col-md-4 card-body">
+      <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="IdPrestation" />
+        <div class="form-group">
+          <label asp-for="Prestation1" class="control-label"></label>
+          <input asp-for="Prestation1" class="form-control" />
+          <span asp-validation-for="Prestation1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Code" class="control-label"></label>
+          <input asp-for="Code" class="form-control" />
+          <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="PrixUnitaire" class="control-label"></label>
+          <input asp-for="PrixUnitaire" class="form-control" />
+          <span asp-validation-for="PrixUnitaire" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Duree" class="control-label"></label>
+          <input asp-for="Duree" class="form-control" />
+          <span asp-validation-for="Duree" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="IdUnite" class="control-label"></label>
+          <select asp-for="IdUnite" class="form-control" asp-items="ViewBag.IdUnite"></select>
+          <span asp-validation-for="IdUnite" class="text-danger"></span>
+        </div>
+        <div class="form-group" style="display: none">
+          <label asp-for="IdPrestation1" class="control-label"></label>
+          <select asp-for="IdPrestation1" class="form-control" asp-items="ViewBag.IdPrestation1"></select>
+          <span asp-validation-for="IdPrestation1" class="text-danger"></span>
+        </div>
+        <div class="form-group" style="display: none">
+          <label asp-for="IdTypeTravaux" class="control-label"></label>
+          <select asp-for="IdTypeTravaux" class="form-control" asp-items="ViewBag.IdTypeTravaux"></select>
+          <span asp-validation-for="IdTypeTravaux" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+      </form>
+      @Html.ValidationSummary()
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,11 +1,15 @@
 using System.ComponentModel.DataAnnotations;
-using AspnetCoreMvcFull.Entities;
+using AspnetCoreMvcFull.Models.Entities;
 
 namespace AspnetCoreMvcFull.Models.DTO;
 
 public class LoginDto : Dto
 {
-
+  [Required(ErrorMessage = "Phone number is required.")]
+  [DataType(DataType.PhoneNumber)]
+  [RegularExpression(@"^03\d{8}$", ErrorMessage = "Not a valid number. (03########)")]
+  private string numero;
+/*
   private string _email;
   private string _password;
 
@@ -14,7 +18,7 @@ public class LoginDto : Dto
   public string Email
   {
     get => _email;
-    set => _email = value ?? throw new ArgumentNullException(nameof(value));
+    set => _email = value; //?? throw new ArgumentNullException(nameof(value));
   }
 
   [Required(ErrorMessage = "Password can't be null")]
@@ -26,13 +30,21 @@ public class LoginDto : Dto
       this._password = value;
     }
   }
+*/
+  [Required(ErrorMessage = "Phone number is required.")]
+  [DataType(DataType.PhoneNumber)]
+  [RegularExpression(@"^\+?1?\d{9,15}$", ErrorMessage = "Not a valid number. (03########)")]
+  public string Numero
+  {
+    get => numero;
+    set => numero = value ?? throw new ArgumentNullException(nameof(value));
+  }
 
   public object mapDtoToEntity()
   {
     Utilisateur chauffeur = new Utilisateur
     {
-        Email = this.Email,
-        MotDePasse = this.Password
+      Numero = this.Numero
     };
     return chauffeur;
   }

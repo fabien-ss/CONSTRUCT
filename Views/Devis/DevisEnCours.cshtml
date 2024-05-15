@@ -1,0 +1,77 @@
+@using AspnetCoreMvcFull.Models.Entities
+@{
+  List<Devi> devis= (List<Devi>)ViewData["devis"];
+}
+
+<div class="row ">
+  @foreach (Devi tm in devis)
+  {
+    @if (tm.VEtatPaiementDevis.percentageProgress() >= 50)
+    {
+      <div class="col-md-6 col-lg-4 mb-3 ">
+        <div class="card h-100 green-card">
+          <img class="card-img-top" src="@tm.IdTypeMaisonNavigation.Photo" alt="Card image cap"/>
+          <div class="card-body ">
+            <h5 class="card-title">@tm.IdFinitionNavigation.Finition1</h5>
+            <h5 class="card-title">@tm.DateDevis</h5>
+            <p class="card-text">
+              @tm.PrixTotal
+            </p>
+            <p class="card-text">Total à payer: @tm.VEtatPaiementDevis.PrixTotal</p>
+            <p class="card-text">Payé: @tm.VEtatPaiementDevis.Paye</p>
+            <p>Progression: @tm.VEtatPaiementDevis.percentageProgress()</p>
+            <div class="progress mb-3">
+
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: @tm.VEtatPaiementDevis.percentageProgress()%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+
+            </div>
+            <a href="/Travaux/Travaux?idDevis=@tm.IdDevis" class="btn btn-outline-primary">Voir les travaux</a>
+
+          </div>
+        </div>
+      </div>
+    }
+    else
+    {
+      <div class="col-md-6 col-lg-4 mb-3 ">
+        <div class="card h-100 red-card">
+          <img class="card-img-top" src="@tm.IdTypeMaisonNavigation.Photo" alt="Card image cap"/>
+          <div class="card-body ">
+            <h5 class="card-title">@tm.IdFinitionNavigation.Finition1</h5>
+            <h5 class="card-title">@tm.DateDevis</h5>
+            <p class="card-text">
+              @tm.PrixTotal
+            </p>
+            <p class="card-text">Total à payer: @tm.VEtatPaiementDevis.PrixTotal</p>
+            <p class="card-text">Payé: @tm.VEtatPaiementDevis.Paye</p>
+            <p>Progression: @tm.VEtatPaiementDevis.percentageProgress()</p>
+            <div class="progress mb-3">
+
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" style="width: @tm.VEtatPaiementDevis.percentageProgress()%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+
+            </div>
+            <a href="/Travaux/Travaux?idDevis=@tm.IdDevis" class="btn btn-outline-primary">Voir les travaux</a>
+
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
+
+<style>/*
+  .red-card{
+    background-color: #dd5050;
+    color: white;
+    h5{
+      color: white;
+    }
+  }
+  .green-card{
+    background-color: #435730;;;
+    color: white;
+        h5{
+          color: white;
+        }
+  }*/
+</style>

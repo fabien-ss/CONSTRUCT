@@ -20,10 +20,6 @@
         {
           name: '2021',
           data: [18, 7, 15, 29, 18, 12, 9]
-        },
-        {
-          name: '2020',
-          data: [-13, -18, -9, -14, -5, -17, -15]
         }
       ],
       chart: {
@@ -269,6 +265,8 @@
         }
       }
     };
+
+
   if (typeof totalRevenueChartEl !== undefined && totalRevenueChartEl !== null) {
     const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
     totalRevenueChart.render();

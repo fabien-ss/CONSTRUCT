@@ -1,0 +1,53 @@
+@model IEnumerable<AspnetCoreMvcFull.Models.Entities.Finition>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-action="Create" style="display: none;">Create New</a>
+</p>
+<div class="card">
+  <h5 class="card-header">Liste</h5>
+  <div class="table-responsive text-nowrap">
+
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Finition1)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Majoration)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Photo)
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody  class="table-border-bottom-0">
+    @foreach (var item in Model) {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.Finition1)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Majoration)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+          <a asp-action="Edit" asp-route-id="@item.IdFinition">Edit</a> |
+          <span style="display:none;">
+
+          <a asp-action="Details" asp-route-id="@item.IdFinition">Details</a> |
+          <a asp-action="Delete" asp-route-id="@item.IdFinition">Delete</a>
+          </span>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+  </div>
+</div>

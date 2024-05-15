@@ -1,0 +1,33 @@
+@using AspnetCoreMvcFull.Models.Entities
+@{
+  List<Devi> listDevis = (List<Devi>)ViewData["MesDevis"];
+}
+
+<div class="row mb-5">
+  @foreach (Devi tm in listDevis)
+  {
+    <div class="col-md-6 col-lg-4 mb-3 ">
+      <div class="card h-100">
+        <img class="card-img-top" src="@tm.IdTypeMaisonNavigation.Photo" alt="Card image cap"/>
+        <div class="card-body">
+          <h5 class="card-title">@tm.DateDevis</h5>
+          <p class="card-text">
+            @tm.PrixTotal @tm.Lieu
+          </p>
+          <p>Pack: @tm.IdFinitionNavigation.Finition1</p>
+          <p class="card-text">Total à payer: @tm.VEtatPaiementDevis.PrixTotal</p>
+          <p class="card-text">Payé: @tm.VEtatPaiementDevis.Paye</p>
+          <p>Progression: @tm.VEtatPaiementDevis.percentageProgress().ToString("F") %</p>
+          <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: @tm.VEtatPaiementDevis.percentageProgress()%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <a href="/Devis/Exporter?idDevis=@tm.IdDevis" class="btn btn-outline-primary">Exporter</a>
+          @if (tm.EstPaye == false)
+          {
+            <a href="/Paiement/Payer?idDevis=@tm.IdDevis" class="btn btn-outline-primary">Payer</a>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
