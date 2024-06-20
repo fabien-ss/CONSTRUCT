@@ -1,0 +1,109 @@
+@using AspnetCoreMvcFull.Models.Entities
+@{
+  List<TypeMaison> typeMaisons =  (List<TypeMaison>)ViewData["TypeMaison"];
+  List<Finition> finitions = (List<Finition>)ViewData["Finition"];
+  List<Lieu> lieus = (List<Lieu>)ViewData["Lieu"];
+}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var radios = document.getElementsByClassName("radiop");
+  console.log("radios ", radios.length);
+
+  for (var i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('click', function() {
+      // Sélectionne la case à cocher à l'intérieur du div cliqué
+      var allOutIn = document.getElementsByClassName("outIn");
+      for(let j = 0; j < allOutIn.length; j++) {
+        allOutIn[j].classList.remove("outIn", "shine");
+      }
+      this.querySelector('input[type="radio"]').checked = true;
+      this.classList.add("outIn", "scale", "shine");
+    });
+  }
+
+   var radios2 = document.getElementsByClassName("radiop2");
+    console.log("radios2 ", radios2.length);
+
+    for (var i = 0; i < radios2.length; i++) {
+      radios2[i].addEventListener('click', function() {
+        // Sélectionne la case à cocher à l'intérieur du div cliqué
+        var allOutIn = document.getElementsByClassName("outIn2");
+        for(let j = 0; j < allOutIn.length; j++) {
+          allOutIn[j].classList.remove("outIn2", "shine2");
+        }
+        this.querySelector('input[type="radio"]').checked = true;
+        this.classList.add("outIn2", "scale", "shine2");
+      });
+    }
+});
+</script>
+
+<form class="form-control" asp-action="Create" method="post">
+<h5 class="pb-1 mb-4">Choisir le type de maison</h5>
+<div class="row mb-5">
+  @foreach (TypeMaison tm in typeMaisons)
+  {
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card h-100 radiop" >
+        <img class="card-img-top" src="@tm.Photo" alt="Card image cap"/>
+        <div class="card-body">
+          <h5 class="card-title">@tm.TypeMaison1</h5>
+          <p class="card-text">
+            @tm.Desciption
+          </p>
+          <input type="radio" name="TypeMaison" value=@tm.IdTypeMaison style="display: none">
+        </div>
+      </div>
+    </div>
+  }
+  <div class="alert-danger">@Html.ValidationMessage("TypeMaison")</div>
+</div>
+
+<h5 class="pb-1 mb-4">Type de finition</h5>
+<div class="row mb-5">
+  @foreach (Finition f in finitions)
+  {
+    <div class="col-md">
+      <div class="card mb-3 radiop2">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="card-img card-img-left" src="@f.Photo" alt="Card image" style="height: 90px"/>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body ">
+              <h5 class="card-title">@f.Finition1 , @f.Majoration</h5>
+              <input type="radio" name="TypeFinition" value=@f.IdFinition style="display: none"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  <div class="alert-danger">@Html.ValidationMessage("TypeFinition")</div>
+</div>
+<div class="row mb-5 card">
+  <div class="form-password-toggle">
+    <label class="form-label" for ="basic-default-password12">Date de debut</label>
+    <div class="input-group">
+      <input type="date" name="DateDebut" class="form-control" id="basic-default-password12" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="basic-default-password2" />
+    </div>
+  </div>
+</div>
+<div class="row mb-5 card">
+  <div >
+    <label>Lieu</label>
+    <select class="form-select" name="Lieu">
+      @foreach(Lieu l in lieus)
+      {
+        <option value="@l.lieu" >@l.lieu</option>
+      }
+    </select>
+  </div>
+</div>
+<div class="row">
+  <input type="submit" class="btn btn-primary"/>
+</div>
+<div class="alert-danger">
+  @Html.ValidationSummary()
+</div>
+</form>

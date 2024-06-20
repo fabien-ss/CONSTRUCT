@@ -2,7 +2,8 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.Json;
 using AspnetCoreMvcFull.Context;
-using AspnetCoreMvcFull.Entities;
+using AspnetCoreMvcFull.Controllers.auth;
+using AspnetCoreMvcFull.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using AspnetCoreMvcFull.Models;
 using AspnetCoreMvcFull.Models.DTO;
@@ -11,13 +12,39 @@ namespace AspnetCoreMvcFull.Controllers;
 
 public class AuthController : Controller, MethodController
 {
-  private Tsakitsaky Tsakitsaky;
-  public AuthController(Tsakitsaky prom13)
+  private ConstructionDb ConstructionDb;
+  public AuthController(ConstructionDb prom13)
   {
-    this.Tsakitsaky = prom13;
+    this.ConstructionDb = prom13;
   }
 
   public IActionResult ForgotPasswordBasic() => View();
+
+  [HttpGet]
+  public IActionResult LoginAdmin()
+  {
+    return View();
+  }
+
+  [HttpPost]
+  public IActionResult LoginAdmin(LoginAdminDto loginAdminDto)
+  {
+    if (ModelState.IsValid)
+    {
+      try
+      {
+        Utilisateur utilisateur = loginAdminDto.mapDtoToEntity();
+        utilisateur = utilisateur.findAdmin(ConstructionDb);
+        HttpContext.Session.SetString("user", value: JsonSerializer.Serialize(utilisateur));
+        return Redirect("/admindashboard/Index");
+      }
+      catch (Exception e)
+      {
+        ModelState.AddModelError("error", e.Message);
+      }
+    }
+    return View();
+  }
 
   [HttpGet]
   public IActionResult LoginBasic()
@@ -38,13 +65,13 @@ public class AuthController : Controller, MethodController
       try
       {
         Utilisateur user = (Utilisateur) loginDto.mapDtoToEntity();
-        user = user.getChauffeur(prom13: this.Tsakitsaky);
+        user = user.getOrCreateUser(prom13: this.ConstructionDb);
         HttpContext.Session.SetString("user", value: JsonSerializer.Serialize(user));
-        return Redirect("Dashboards/Index");
+        return Redirect("/Devis/mesDevis");
       }
       catch (Exception e)
       {
-        ModelState.AddModelError("Error", e.Message);
+        ModelState.AddModelError("Error", "not a valid input");
       }
     }
     return View(loginDto);

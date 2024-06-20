@@ -1,0 +1,27 @@
+const regex = /^03\d{6}$/;
+
+const numbers = [
+    '034123456',
+    '033654321',
+    '032987654',
+    '037123456',
+    '038987654'
+];
+
+numbers.forEach(number => {
+    if (regex.test(number)) {
+        console.log(`${number} is valid.`);
+    } else {
+        console.log(`${number} is not valid.`);
+    }
+});
+
+
+   static bool EstNumeroTelephoneValide(string numero)
+    {
+        // Expression régulière pour le format spécifié (03########)
+        string pattern = @"^03\d{8}$";
+
+        // Vérifier si le numéro de téléphone correspond au motif
+        return Regex.IsMatch(numero, pattern);
+    }

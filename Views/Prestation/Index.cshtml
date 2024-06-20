@@ -1,0 +1,74 @@
+@model IEnumerable<AspnetCoreMvcFull.Models.Entities.Prestation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste</h1>
+
+<p>
+    <a asp-action="Create" style="display:none;">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prestation1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixUnitaire)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.Duree)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.IdPrestation1Navigation)
+            </th>
+            <th style="display: none">
+                @Html.DisplayNameFor(model => model.IdTypeTravauxNavigation)
+            </th>
+            <th >
+                @Html.DisplayNameFor(model => model.IdUniteNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prestation1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixUnitaire)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.Duree)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.IdPrestation1Navigation.IdPrestation)
+            </td>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.IdTypeTravauxNavigation.IdTypeTravaux)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.IdUniteNavigation.Initial)
+            </td>
+            <td>
+              <a asp-action="Edit" asp-route-id="@item.IdPrestation">Edit</a> |
+              <span style="display:none;">
+
+                <a asp-action="Details" asp-route-id="@item.IdPrestation">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPrestation">Delete</a>
+              </span>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

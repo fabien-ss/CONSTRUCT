@@ -13,7 +13,7 @@
 
 <div class="container-xxl rightToLeft">
   <div class="authentication-wrapper authentication-basic container-p-y">
-    <div class="authentication-inner shine">
+    <div class="authentication-inner">
       <!-- Register -->
       <div class="card">
         <div class="card-body">
@@ -26,27 +26,12 @@
           </div>
           <!-- /Logo -->
           <h4 class="mb-2">Welcome to @TempData.Peek("appName")! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
-
           <form id="formAuthentication" class="mb-3" asp-controller="Auth" asp-action="LoginBasic" method="POST">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3">
-              <label for="email" asp-for="Email" class="form-label">Email or Username</label>
-              <input type="text" value="rakoto0987@gmail.com" asp-for="Email" asp-items="ViewBag.Email" class="form-control" id="email" name="Email" >
-              <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="mb-3 form-password-toggle">
-              <div class="d-flex justify-content-between">
-                <label asp-for="Password" class="form-label" for="password">Password</label>
-                <a href="/Auth/ForgotPasswordBasic">
-                  <small>Forgot Password?</small>
-                </a>
-              </div>
-              <div class="input-group input-group-merge">
-                <input asp-for="Password" value="rakoto" asp-items="ViewBag.Password" type="password" id="password" class="form-control" name="Password" aria-describedby="password"/>
-                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-              </div>
-              <span asp-validation-for="Password" class="text-danger"></span>
+              <label for="numero" asp-for="Numero" class="form-label">Numero</label>
+              <input type="text" value="0340609099" asp-for="Numero" asp-items="ViewBag.Numero" class="form-control" id="numero" name="Numero" >
+              <span asp-validation-for="Numero" class="text-danger"></span>
             </div>
             <div class="mb-3">
               <div class="form-check">
@@ -61,11 +46,9 @@
             </div>
 
           </form>
-            <div class="alert alert-danger alert-dismissible" role="alert">
+            <span class="error"  >
               @Html.ValidationSummary()
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
-              </div>
+              </span>
           <p class="text-center">
             <span>New on our platform?</span>
             <a href="/Auth/RegisterBasic">

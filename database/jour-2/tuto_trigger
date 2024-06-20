@@ -1,0 +1,24 @@
+ALTER TABLE table_name
+DISABLE TRIGGER trigger_name;
+
+
+-- Ajouter une validation pour s'assurer que la quantité de prestation est positive
+CREATE OR REPLACE FUNCTION mouvement_devis()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    IF NEW.quantite <= 0 THEN
+        RAISE EXCEPTION 'La quantité de prestation doit être positive';
+    END IF;
+
+    -- Insertion des détails de devis
+    INSERT INTO details_devis(id_prestation, id_type_maison, quantite, prestation, total, code, prix_unitaire, unite, id_unite, id_devis, duree)
+    SELECT dpm.id_prestation, dpm.id_type_maison, dpm.quantite, dpm.prestation, dpm.total, dpm.code, dpm.prix_unitaire, dpm.unite, dpm.id_unite, NEW.id_devis, dpm.duree
+    FROM devis_par_maison dpm
+    WHERE dpm.id_type_maison = NEW.id_type_maison;
+
+    RETURN NEW;
+END;
+$$;

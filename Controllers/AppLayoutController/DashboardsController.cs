@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
-using AspnetCoreMvcFull.Entities;
+using AspnetCoreMvcFull.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using AspnetCoreMvcFull.Models;
 
@@ -22,15 +22,30 @@ public class DashboardsController : Controller
     }
   }
 
+  public bool checkUserSession()
+  {
+    try
+    {
+      return true;
+    }
+    catch (Exception e)
+    {
+      return false;
+    }
+  }
+
   public IActionResult Index()
   {
-    string user = HttpContext.Session.GetString("user");
+    if (checkUserSession())
+    {
+      string user = HttpContext.Session.GetString("user");
       Utilisateur chauffeur = JsonSerializer.Deserialize<Utilisateur>(user);
-    Console.WriteLine("user "+ user);
-    Console.WriteLine("ALORS");
-    /*
-   */
-    return View();
+      return View();
+    }
+    else
+    {
+      return Redirect("Auth/LoginBasic");
+    }
   }
 
   public IActionResult BigNotification()
